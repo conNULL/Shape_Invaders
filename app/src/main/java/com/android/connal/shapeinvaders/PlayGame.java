@@ -27,7 +27,7 @@ public class PlayGame extends ActionBarActivity{
     boolean run = true;
     boolean started = false;
     final static float transp = 0.15f;
-
+    //working
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
