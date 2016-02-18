@@ -1,0 +1,83 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.android.connal.shapeinvaders.PlayGame">
+
+    <com.android.connal.shapeinvaders.gScreen
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/sv"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:textColor="#FFFFFF"
+        android:text="@string/hbar"
+        android:id="@+id/hbar"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop = "10dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart = "25dp"
+        android:textColor= "#FFFFFF"
+        android:text="Score: 0  "
+        android:id= "@+id/sbar"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop = "25dp"
+        android:layout_marginStart="10dp"
+        android:textColor= "#FFFFFF"
+        android:text= "@string/lbar"
+        android:id= "@+id/lbar"/>
+    <Button
+    android:layout_width="179dp"
+    android:layout_height="90dp"
+    android:layout_alignParentBottom="true"
+    android:layout_marginLeft="0dp"
+    android:background="@drawable/lr"
+    android:id="@+id/left"
+    android:textColor="@android:color/white"
+    android:text="LEFT"/>
+
+    <Button
+        android:layout_width="179dp"
+        android:layout_height="90dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="0dp"
+        android:background="@drawable/lr"
+        android:id="@+id/right"
+        android:textColor="@android:color/white"
+        android:text="RIGHT"/>
+
+    <Button
+        android:layout_width="358dp"
+        android:layout_height="320dp"
+        android:layout_marginTop="0dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="0dp"
+        android:background="@drawable/lr"
+        android:onClick="ss"
+        android:id="@+id/ss"
+        android:textColor="@android:color/white"
+        android:text="Pause/Resume"/>
+
+    <Button
+        android:layout_width="359dp"
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="90dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="0dp"
+        android:background="@drawable/lr"
+        android:onClick="shoot"
+        android:id="@+id/shoot"
+        android:textColor="@android:color/white"
+        android:text="Shoot"/>
+
+
+
+</RelativeLayout>
