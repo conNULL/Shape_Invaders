@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/ShapeInvaders.iml" filepath="$PROJECT_DIR$/ShapeInvaders.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Shape_Invaders.git.iml" filepath="$PROJECT_DIR$/Shape_Invaders.git.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
