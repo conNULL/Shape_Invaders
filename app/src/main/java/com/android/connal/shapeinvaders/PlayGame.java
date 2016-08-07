@@ -26,7 +26,7 @@ public class PlayGame extends ActionBarActivity{
     Player player;
     boolean run = true;
     boolean started = false;
-    final static float transp = 0.15f;
+    final static float TRANSP = 0.15f;
     //working
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -197,10 +197,10 @@ public class PlayGame extends ActionBarActivity{
         //left.getBackground().setAlpha(transp);
         //right.getBackground().setAlpha(transp);
         //shoot.getBackground().setAlpha(transp);
-        pause.setAlpha(transp);
-        left.setAlpha(transp);
-        right.setAlpha(transp);
-        shoot.setAlpha(transp);
+        pause.setAlpha(TRANSP);
+        left.setAlpha(TRANSP);
+        right.setAlpha(TRANSP);
+        shoot.setAlpha(TRANSP);
     }
     public void mark(){
         Button left = (Button)findViewById(R.id.left);
