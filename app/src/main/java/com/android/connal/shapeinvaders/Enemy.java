@@ -18,20 +18,22 @@ public abstract class Enemy extends Entity {
     private int sX;
     private int sY;
     protected int power;
+    protected int shotSpeed;
     protected Bitmap lb;
     protected int shotBase;
     protected int moveBase;
     protected int direction;
     protected int value;
 
-    public Enemy(int a , int h, int health, int shotF, int xRange, int yRange, int power,int speed,
-                 int moveF, int value, Bitmap b, Bitmap lb,  gScreen g) {
+    public Enemy(int a , int h, int health, int shotF, int xRange, int yRange, int power,int shotSpeed, int speed,
+                 int moveF, int value, Bitmap b, Bitmap lb,  GScreen g) {
 
         setX(a);
         setY(h);
         this.health = health;
         this.shotF = shotF;
         this.moveF = moveF;
+        this.shotSpeed = shotSpeed;
         this.xRange = xRange;
         this.yRange = yRange;
         this.power = power;

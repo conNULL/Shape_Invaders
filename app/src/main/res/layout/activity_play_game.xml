@@ -3,7 +3,7 @@
     android:layout_height="match_parent"
     tools:context="com.android.connal.shapeinvaders.PlayGame">
 
-    <com.android.connal.shapeinvaders.gScreen
+    <com.android.connal.shapeinvaders.GScreen
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/sv"/>

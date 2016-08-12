@@ -50,7 +50,7 @@ public class Player extends Entity {
         health = 100;
     }
 
-    public void shoot(LinkedList l, gScreen g){
+    public void shoot(LinkedList l, GScreen g){
 
         if(shotsLeft != 0) {
             Bitmap b = BitmapFactory.decodeResource(g.getResources(), R.mipmap.player_laser);

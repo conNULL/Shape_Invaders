@@ -1,18 +1,23 @@
 package com.android.connal.shapeinvaders;
 
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
 import java.util.LinkedList;
 
 /**
- * Created by Connal on 2015-12-08.
+ * Created by Connal on 2016-08-12.
  */
-public class Enemy2 extends Enemy {
-
-    public Enemy2(int x, int y, GScreen g){
-        super(x, y, 10 , 5, 250, 125, 10,20, 3, 20, 150,
-                BitmapFactory.decodeResource(g.getResources(), R.mipmap.square_enemy_2),
+public class Enemy3 extends Enemy {
+    public Enemy3(int x, int y, GScreen g){
+        super(x, y,10, 20, 300, 150, 10, 20,6, 35, 200,
+                Bitmap.createScaledBitmap(BitmapFactory.decodeResource(g.getResources(), R.mipmap.green_triangle_1),80, 80, false),
                 BitmapFactory.decodeResource(g.getResources(), R.mipmap.e_laser1), g);
+    }
+
+    public void shoot(LinkedList l, int shotNum){
+        if(shotNum > shotBase && shotNum < shotBase + shotF)
+            l.add(new Laser(false, power, shotSpeed, lb, x + getWidth()/2 - b.getWidth()/2, y + b.getHeight() + 1));
     }
 
     public void move(int moveNum) {
@@ -37,10 +42,5 @@ public class Enemy2 extends Enemy {
         }
 
         correctRange();
-    }
-
-    public void shoot(LinkedList l, int shotNum){
-        if(shotNum > shotBase && shotNum < shotBase + shotF)
-            l.add(new Laser(false, power, shotSpeed, lb, x + getWidth()/2 - b.getWidth()/2, y + b.getHeight() + 1));
     }
 }

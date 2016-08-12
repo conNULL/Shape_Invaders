@@ -30,7 +30,7 @@ public class Laser extends Entity{
         return player;
     }
 
-    public void move(gScreen g, Player p, LinkedList l){
+    public void move(GScreen g, Player p, LinkedList l){
 
         if(player) {
 

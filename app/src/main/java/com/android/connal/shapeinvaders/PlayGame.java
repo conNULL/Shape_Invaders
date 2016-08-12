@@ -20,7 +20,7 @@ import android.widget.TextView;
 
 public class PlayGame extends ActionBarActivity{
 
-    gScreen g;
+    GScreen g;
     Button left, right, ss;
     TextView hbar, sbar, lbar;
     Player player;
@@ -32,7 +32,7 @@ public class PlayGame extends ActionBarActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_game);
-        g = (gScreen) findViewById(R.id.sv);
+        g = (GScreen) findViewById(R.id.sv);
         left = (Button) findViewById(R.id.left);
         right = (Button) findViewById(R.id.right);
         hbar = (TextView) findViewById(R.id.hbar);
