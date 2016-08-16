@@ -18,7 +18,6 @@ public class Laser extends Entity{
         super(b, x, y, speed);
         this.player = player;
         this.power = power;
-
     }
 
     public int getPower() {
@@ -33,19 +32,15 @@ public class Laser extends Entity{
     public void move(GScreen g, Player p, LinkedList l){
 
         if(player) {
-
             y -= speed;
             if (y < 0) {
-
                 destroy(l, p);
-
             }
         } else{
-
-                y += speed;
-                if(y + getHeight() > g.getHeight())
-                    destroy(l, p);
-            }
+            y += speed;
+            if(y + getHeight() > g.getHeight())
+                destroy(l, p);
+        }
     }
 
 
@@ -53,8 +48,6 @@ public class Laser extends Entity{
 
         if(isPlayer())
             p.addShot();
-
         l.remove(this);
     }
-
 }

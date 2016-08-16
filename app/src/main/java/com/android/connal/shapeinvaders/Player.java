@@ -16,7 +16,6 @@ public class Player extends Entity {
     private int power;
     private int score;
 
-
     public Player(Bitmap b, int a , int h, int s){
 
         super(b, a, h, s);
@@ -45,7 +44,6 @@ public class Player extends Entity {
     }
 
     public void die(){
-
         lives--;
         health = 100;
     }

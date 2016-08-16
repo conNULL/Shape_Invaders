@@ -1,20 +1,12 @@
 package com.android.connal.shapeinvaders;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.drawable.ShapeDrawable;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
-import android.view.SurfaceHolder;
-import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 
@@ -27,7 +19,7 @@ public class PlayGame extends ActionBarActivity{
     boolean run = true;
     boolean started = false;
     final static float TRANSP = 0.15f;
-    //working
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,26 +56,20 @@ public class PlayGame extends ActionBarActivity{
                 return true;
             }
         });
-
-        //startGame();
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_play_game, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
@@ -97,19 +83,15 @@ public class PlayGame extends ActionBarActivity{
             g.moveLeft();
         if(right.isPressed())
             g.moveRight();
-
     }
 
     public void startGame(){
-
 
         new Thread(new Runnable() {
             @Override
             public void run() {
 
-                //TextView habr = (TextView) findViewById(R.id.hbar);
                 while(run){
-
                     move();
                     g.update();
                     g.checkCollisions();
@@ -122,7 +104,6 @@ public class PlayGame extends ActionBarActivity{
                     g.post(new Runnable() {
                         @Override
                         public void run() {
-
                             g.draw();
                         }
                     });
@@ -130,7 +111,6 @@ public class PlayGame extends ActionBarActivity{
                     try {
                         Thread.sleep(20);
                     }catch(InterruptedException e){
-
                     }
                 }
             }
@@ -159,14 +139,15 @@ public class PlayGame extends ActionBarActivity{
     }
     public void updateHealth(){
 
-        hbar.setText("Health: " + String.valueOf(g.p.getHealth()));
+        hbar.setText("Health: " + String.valueOf(g.player.getHealth()));
         }
+
     public void updateScore(){
-        sbar.setText("Score: " + String.valueOf(g.p.getScore()) + "  ");
+        sbar.setText("Score: " + String.valueOf(g.player.getScore()) + "  ");
     }
 
     public void updateLives(){
-        lbar.setText("Lives: " + String.valueOf(g.p.getLives()));
+        lbar.setText("Lives: " + String.valueOf(g.player.getLives()));
     }
     public void shoot(View view){
 
@@ -193,10 +174,6 @@ public class PlayGame extends ActionBarActivity{
         Button right = (Button)findViewById(R.id.right);
         Button shoot = (Button)findViewById(R.id.shoot);
         Button pause = (Button)findViewById(R.id.ss);
-        //pause.getBackground().setAlpha(transp);
-        //left.getBackground().setAlpha(transp);
-        //right.getBackground().setAlpha(transp);
-        //shoot.getBackground().setAlpha(transp);
         pause.setAlpha(TRANSP);
         left.setAlpha(TRANSP);
         right.setAlpha(TRANSP);
@@ -210,12 +187,7 @@ public class PlayGame extends ActionBarActivity{
         pause.setText("PAUSE/RESUME");
         left.setText("LEFT");
         right.setText("RIGHT");
-        shoot.setText("SHOOT");/*
-        pause.getBackground().setAlpha(255);
-        left.getBackground().setAlpha(255);
-        right.getBackground().setAlpha(255);
-        shoot.getBackground().setAlpha(255);
-        */
+        shoot.setText("SHOOT");
         pause.setAlpha(1);
         left.setAlpha(1);
         right.setAlpha(1);

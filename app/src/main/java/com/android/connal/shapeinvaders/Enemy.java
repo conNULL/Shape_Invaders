@@ -44,45 +44,17 @@ public abstract class Enemy extends Entity {
         sX = x;
         sY = y;
         direction = 0;
-/*
-
-        switch(type){
-
-            case 1: health = 10;
-                    shotF = 5;
-                    xRange = 250;
-                    yRange = 125;
-                    power = 10;
-                    speed = 0;
-                    moveF = 0;
-                    b = BitmapFactory.decodeResource(g.getResources(), R.mipmap.square_enemy_1);
-                    lb = BitmapFactory.decodeResource(g.getResources(), R.mipmap.e_laser1); break;
-
-            case 2: health = 10;
-                    shotF = 5;
-                    xRange = 250;
-                    yRange = 125;
-                    power = 10;
-                    speed = 3;
-                    moveF = 20;
-                    b = BitmapFactory.decodeResource(g.getResources(), R.mipmap.square_enemy_2);
-                    lb = BitmapFactory.decodeResource(g.getResources(), R.mipmap.e_laser1); break;
-        }
-*/
         shotBase = (int)((Math.random() * (1000 - shotF))) + 1;
         moveBase = (int)((Math.random() * (1000 - moveF))) + 1;
         width = b.getWidth();
         height = b.getHeight();
-
     }
 
     public void setHealth(int h){
-
         health = h;
     }
 
     public int getHealth(){
-
         return health;
     }
 
