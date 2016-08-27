@@ -1,16 +1,16 @@
 package com.android.connal.shapeinvaders;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Point;
 import android.util.AttributeSet;
+import android.view.Display;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.view.View;
-import android.widget.EditText;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import java.util.LinkedList;
@@ -18,29 +18,30 @@ import java.util.LinkedList;
 /**
  * Created by Connal on 2015-05-14.
  */
-public class gScreen extends SurfaceView {
+public class GScreen extends SurfaceView {
 
     private Canvas c;
     private SurfaceHolder sh;
-    protected Player p;
+    protected Player player;
     LinkedList lasers;
-    private LinkedList enemies;
+    private LinkedList enemies = new LinkedList();
     private boolean created = false;
     private int level;
+    private double screenWidth;
     Enemy enemy;
     Laser laser;
     TextView view;
-    public gScreen(Context context) {
+    public GScreen(Context context) {
         super(context);
         init();
     }
 
-    public gScreen(Context context, AttributeSet attrs) {
+    public GScreen(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }
 
-    public gScreen(Context context, AttributeSet attrs, int defStyle) {
+    public GScreen(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         init();
     }
@@ -48,59 +49,46 @@ public class gScreen extends SurfaceView {
     public void init(){
 
         sh = getHolder();
+        sh.addCallback(new SurfaceHolder.Callback() {
 
+            @Override
+            public void surfaceCreated(SurfaceHolder holder) {
+                Entity.setScreenDimensions(getWidth(), getHeight());
+                Bitmap b = BitmapFactory.decodeResource(getResources(),
+                        R.mipmap.blue_arrow);
+                player = new Player(b, 12, getWidth()/12);
+                lasers = new LinkedList();
+                level = 1;
+                startLevel(level);
+                created = true;
+            }
 
+            @Override
+            public void surfaceChanged(SurfaceHolder holder,
+                                       int format, int width, int height) {
+            }
 
-                sh.addCallback(new SurfaceHolder.Callback() {
-
-                    @Override
-                    public void surfaceCreated(SurfaceHolder holder) {
-
-
-                        Bitmap b = BitmapFactory.decodeResource(getResources(),
-                                R.mipmap.blue_arrow);
-                        p = new Player(b, getWidth() / 2 - b.getWidth() / 2, getHeight() - b.getHeight(), 12);
-                        lasers = new LinkedList();
-                        enemies = new LinkedList();
-                        level = 1;
-                        startLevel(level);
-                        created = true;
-
-                    }
-
-                    @Override
-                    public void surfaceChanged(SurfaceHolder holder,
-                                               int format, int width, int height) {
-
-
-                    }
-
-                    @Override
-                    public void surfaceDestroyed(SurfaceHolder holder) {
-
-
-                    }
-                });
-
+            @Override
+            public void surfaceDestroyed(SurfaceHolder holder) {
+            }
+        });
     }
 
     public void moveRight(){
 
-        if(p.getX() + p.getSpeed() + p.getWidth() < getWidth())
-             p.setX(p.getX() + p.getSpeed());
-
+        if(player.getX() + player.getSpeed() + player.getWidth() < getWidth())
+             player.setX(player.getX() + player.getSpeed());
     }
 
     public void moveLeft(){
 
-        if(p.getX() - p.getSpeed() > 0)
-             p.setX(p.getX() - p.getSpeed());
+        if(player.getX() - player.getSpeed() > 0)
+             player.setX(player.getX() - player.getSpeed());
     }
 
     public void draw(){
 
         if(created){
-
             c = sh.lockCanvas();
             clear();
             drawPlayer();
@@ -113,18 +101,16 @@ public class gScreen extends SurfaceView {
     public void clear(){
 
         c.drawColor(Color.BLACK);
-
     }
 
     public void drawPlayer(){
 
-        c.drawBitmap(p.getB(), p.getX(), p.getY(), null);
+        c.drawBitmap(player.getB(), player.getX(), player.getY(), null);
     }
 
     public void drawLasers(){
 
         for(int i = 0; i < lasers.size(); i++){
-
             Laser l = (Laser) lasers.get(i);
             c.drawBitmap(l.getB(), l.getX(), l.getY(), null);
         }
@@ -140,7 +126,7 @@ public class gScreen extends SurfaceView {
 
     public void pShoot(){
 
-        p.shoot(lasers, this);
+        player.shoot(lasers, this);
     }
 
     public void update(){
@@ -156,7 +142,7 @@ public class gScreen extends SurfaceView {
     public void moveLasers(){
 
         for(int i = 0; i < lasers.size(); i++)
-            ((Laser) lasers.get(i)).move(this, p, lasers);
+            ((Laser) lasers.get(i)).move(this, player, lasers);
     }
 
     public void moveEnemiesAndShoot(){
@@ -188,25 +174,20 @@ public class gScreen extends SurfaceView {
     public void checkCollisions(){
 
         if(created) {
-
-           // p.setHealth(lasers.size());
             for (int i = 0; i < lasers.size(); i++) {
-
                 Laser l = (Laser) lasers.get(i);
+
                 if (l.isPlayer()) {
-
                     for (int j = 0; j < enemies.size(); j++) {
-
                         Enemy e = (Enemy) enemies.get(j);
                         if (isCollision(l, e)) {
-                            e.hit(enemies, lasers, l, p);
-
+                            e.hit(enemies, lasers, l, player);
                         }
                     }
                 } else {
 
-                    if (isCollision(l, p))
-                        p.hit(l, lasers, p);
+                    if (isCollision(l, player))
+                        player.hit(l, lasers, player);
                 }
             }
         }
@@ -226,30 +207,50 @@ public class gScreen extends SurfaceView {
                 return true;
             if (e2.getY() >= e1.getY() && e2.getY() <= e1.getY() + e1.getHeight())
                 return true;
-
         }
         return false;
     }
 
-    public void startLevel(int level){
+    public void setUnitLength(double width){
+        this.screenWidth = width;
+    }
 
+    public void startLevel(int level){
 
         switch(level){
 
             case 1:
                 enemies.add(new Enemy1(200,20, this));
-                enemies.add(new Enemy1(450,20, this));
-                enemies.add(new Enemy1(700,20, this));
-                enemies.add(new Enemy1(950,20,this));
-                enemies.add(new Enemy2(325,150,this));
-                enemies.add(new Enemy2(625,150,this));
+                enemies.add(new Enemy1(400,20, this));
+                enemies.add(new Enemy1(600,20, this));
+                enemies.add(new Enemy1(800,20, this));
+                enemies.add(new Enemy2(333,150,this));
+                enemies.add(new Enemy2(667,150,this));
                 break;
             case 2:
                 enemies.add(new Enemy2(250,150,this));
                 enemies.add(new Enemy2(500,150,this));
                 enemies.add(new Enemy2(750,150,this));
-                enemies.add(new Enemy2(325,300,this));
-                enemies.add(new Enemy2(625,300,this));
+                enemies.add(new Enemy2(333,300,this));
+                enemies.add(new Enemy2(667,300,this));
+                break;
+            case 3:
+                enemies.add(new Enemy3(333, 200, this));
+                enemies.add(new Enemy3(667, 200, this));
+                enemies.add(new Enemy3(500, 400, this));
+                break;
+            case 4:
+                enemies.add(new Enemy1(200, 500, this));
+                enemies.add(new Enemy1(350, 500, this));
+                enemies.add(new Enemy1(500, 500, this));
+                enemies.add(new Enemy1(650, 500, this));
+                enemies.add(new Enemy1(800, 500, this));
+                enemies.add(new Enemy2(250, 300, this));
+                enemies.add(new Enemy2(500, 300, this));
+                enemies.add(new Enemy2(750, 300, this));
+                enemies.add(new Enemy3(250, 100, this));
+                enemies.add(new Enemy3(500, 100, this));
+                enemies.add(new Enemy3(750, 100, this));
                 break;
             default:
                 this.level = 0;

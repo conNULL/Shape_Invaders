@@ -13,9 +13,15 @@ public class Laser extends Entity{
     private boolean player;
     private int power;
 
-    public Laser(boolean player, int power, int speed, Bitmap b, int x, int y) {
+    public Laser(boolean player, int power, int speed, Bitmap b, int x, int y, int width, int height) {
 
-        super(b, x, y, speed);
+        super(b, (x*1000)/screenWidth, (y*2000)/screenHeight, width, height,  speed);
+//        this.speed = (speed * screenHeight)/2000;
+//        this.x = x;
+//        this.y = y;
+//        width = (b.getWidth()*screenWidth)/1000;
+//        height = (b.getHeight()*screenWidth)/1000;
+//        this.b = Bitmap.createScaledBitmap(b, width, height, false);
         this.player = player;
         this.power = power;
     }

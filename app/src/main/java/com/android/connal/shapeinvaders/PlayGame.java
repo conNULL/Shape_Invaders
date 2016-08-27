@@ -1,11 +1,14 @@
 package com.android.connal.shapeinvaders;
 
+import android.graphics.Point;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -107,7 +110,6 @@ public class PlayGame extends ActionBarActivity{
                             g.draw();
                         }
                     });
-
                     try {
                         Thread.sleep(20);
                     }catch(InterruptedException e){

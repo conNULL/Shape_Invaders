@@ -10,7 +10,7 @@ import java.util.LinkedList;
 public class Enemy2 extends Enemy {
 
     public Enemy2(int x, int y, GScreen g){
-        super(x, y, 10 , 5, 250, 125, 10,20, 3, 20, 150,
+        super(x, y, screenWidth/24, screenHeight/24, 10 , 5, 250, 125, 10,20, 3, 20, 150,
                 BitmapFactory.decodeResource(g.getResources(), R.mipmap.square_enemy_2),
                 BitmapFactory.decodeResource(g.getResources(), R.mipmap.e_laser1), g);
     }
@@ -41,6 +41,6 @@ public class Enemy2 extends Enemy {
 
     public void shoot(LinkedList l, int shotNum){
         if(shotNum > shotBase && shotNum < shotBase + shotF)
-            l.add(new Laser(false, power, shotSpeed, lb, x + getWidth()/2 - b.getWidth()/2, y + b.getHeight() + 1));
+            l.add(new Laser(false, power, shotSpeed, lb, x +width/2, y + height + 1, screenWidth/70, screenHeight/20));
     }
 }

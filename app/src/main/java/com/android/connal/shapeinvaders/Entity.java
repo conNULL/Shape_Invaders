@@ -15,15 +15,22 @@ public abstract class Entity {
     protected int height;
     protected Bitmap b;
     protected int speed;
+    protected static int screenWidth;
+    protected static int screenHeight;
 
-    public Entity(Bitmap b, int a, int h, int s) {
+    public Entity(Bitmap b, int x, int y, int width, int height, int s) {
 
-        this.b = b;
-        width = b.getWidth();
-        height = b.getHeight();
-        speed = s;
-        setX(a);
-        setY(h);
+        this.width = (width*screenWidth)/1000;
+        this.height = (height*screenWidth)/screenHeight;
+        this.b = Bitmap.createScaledBitmap(b, width, height, false);
+        speed = (s*screenWidth)/1000;
+        this.x =  (x*screenWidth)/1000;
+        this.y =  (y*screenHeight)/2000;
+    }
+
+    public static void setScreenDimensions(int width, int height){
+        screenWidth = width;
+        screenHeight = height;
     }
     public Entity(){};
 
@@ -60,7 +67,7 @@ public abstract class Entity {
     }
 
     public void setSpeed(int s){
-        speed = s;
+        speed = (s*screenWidth)/1000;
     }
 
     public Rect getBounds(){ return (new Rect(getX(), getY(), getWidth(), getHeight()));}

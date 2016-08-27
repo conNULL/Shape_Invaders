@@ -25,29 +25,24 @@ public abstract class Enemy extends Entity {
     protected int direction;
     protected int value;
 
-    public Enemy(int a , int h, int health, int shotF, int xRange, int yRange, int power,int shotSpeed, int speed,
+    public Enemy(int x , int y, int width, int height, int health, int shotF, int xRange, int yRange, int power,int shotSpeed, int speed,
                  int moveF, int value, Bitmap b, Bitmap lb,  GScreen g) {
 
-        setX(a);
-        setY(h);
+        super(b, x, y, width, height, speed);
         this.health = health;
         this.shotF = shotF;
         this.moveF = moveF;
         this.shotSpeed = shotSpeed;
-        this.xRange = xRange;
-        this.yRange = yRange;
+        this.xRange = (xRange*screenWidth)/1000;
+        this.yRange = (yRange*screenWidth)/1000;
         this.power = power;
-        this.speed = speed;
         this.value = value;
-        this.b = b;
         this.lb = lb;
         sX = x;
         sY = y;
         direction = 0;
         shotBase = (int)((Math.random() * (1000 - shotF))) + 1;
         moveBase = (int)((Math.random() * (1000 - moveF))) + 1;
-        width = b.getWidth();
-        height = b.getHeight();
     }
 
     public void setHealth(int h){
