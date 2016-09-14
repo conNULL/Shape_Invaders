@@ -21,7 +21,7 @@ public abstract class Entity {
     public Entity(Bitmap b, int x, int y, int width, int height, int s) {
 
         this.width = (width*screenWidth)/1000;
-        this.height = (height*screenWidth)/screenHeight;
+        this.height = (height*screenHeight)/2000;
         this.b = Bitmap.createScaledBitmap(b, width, height, false);
         speed = (s*screenWidth)/1000;
         this.x =  (x*screenWidth)/1000;

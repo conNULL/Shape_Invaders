@@ -15,9 +15,10 @@ public class Player extends Entity {
     private int shotsLeft;
     private int power;
     private int score;
+    private int shotWidth;
 
     public Player(Bitmap b, int s, int sideLength){
-        super(b, screenWidth/2 + sideLength/2, screenHeight/2 + sideLength/2, sideLength, sideLength, s);
+        super(b, screenWidth/2 + sideLength/2, screenHeight - 2*sideLength, sideLength, sideLength, s);
         health = 100;
         lives = 3;
         score = 0;
@@ -51,7 +52,7 @@ public class Player extends Entity {
 
         if(shotsLeft != 0) {
             Bitmap b = BitmapFactory.decodeResource(g.getResources(), R.mipmap.player_laser);
-            l.add(new Laser(true, power, 20, b, x+width/2, y - height - 1, screenWidth/70, screenHeight/20));
+            l.add(new Laser(true, power, 20, b, x+width/2-3, y-height+20, 20, 100));
             shotsLeft--;
         }
     }

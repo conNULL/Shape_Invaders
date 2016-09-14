@@ -217,6 +217,7 @@ public class GScreen extends SurfaceView {
 
     public void startLevel(int level){
 
+        lasers.clear();
         switch(level){
 
             case 1:

@@ -16,6 +16,7 @@ public class Laser extends Entity{
     public Laser(boolean player, int power, int speed, Bitmap b, int x, int y, int width, int height) {
 
         super(b, (x*1000)/screenWidth, (y*2000)/screenHeight, width, height,  speed);
+        this.x -= this.width;
 //        this.speed = (speed * screenHeight)/2000;
 //        this.x = x;
 //        this.y = y;

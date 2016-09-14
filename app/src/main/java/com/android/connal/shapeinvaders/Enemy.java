@@ -24,6 +24,7 @@ public abstract class Enemy extends Entity {
     protected int moveBase;
     protected int direction;
     protected int value;
+    protected int shotWidth;
 
     public Enemy(int x , int y, int width, int height, int health, int shotF, int xRange, int yRange, int power,int shotSpeed, int speed,
                  int moveF, int value, Bitmap b, Bitmap lb,  GScreen g) {
