@@ -32,7 +32,6 @@ public class PlayGame extends ActionBarActivity{
         right = (Button) findViewById(R.id.right);
         hbar = (TextView) findViewById(R.id.hbar);
         sbar = (TextView) findViewById(R.id.sbar);
-        lbar = (TextView) findViewById(R.id.lbar);
         left.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -137,7 +136,6 @@ public class PlayGame extends ActionBarActivity{
     public void update_UI(){
         updateHealth();
         updateScore();
-        updateLives();
     }
     public void updateHealth(){
 
@@ -148,9 +146,7 @@ public class PlayGame extends ActionBarActivity{
         sbar.setText("Score: " + String.valueOf(g.player.getScore()) + "  ");
     }
 
-    public void updateLives(){
-        lbar.setText("Lives: " + String.valueOf(g.player.getLives()));
-    }
+
     public void shoot(View view){
 
         if(!started){

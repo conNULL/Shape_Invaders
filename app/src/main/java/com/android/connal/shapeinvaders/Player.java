@@ -11,7 +11,6 @@ import java.util.LinkedList;
 public class Player extends Entity {
 
     private int health;
-    private int lives;
     private int shotsLeft;
     private int power;
     private int score;
@@ -20,7 +19,6 @@ public class Player extends Entity {
     public Player(Bitmap b, int s, int sideLength){
         super(b, screenWidth/2 + sideLength/2, screenHeight - 2*sideLength, sideLength, sideLength, s);
         health = 100;
-        lives = 3;
         score = 0;
         power = 10;
         shotsLeft = 2;
@@ -28,7 +26,7 @@ public class Player extends Entity {
 
     public boolean isDead(){
 
-        if(lives == 0)
+        if(health <= 0)
             return true;
         else
             return false;
@@ -44,7 +42,6 @@ public class Player extends Entity {
     }
 
     public void die(){
-        lives--;
         health = 100;
     }
 
@@ -64,8 +61,5 @@ public class Player extends Entity {
     public int getScore(){return score;}
     public void setScore(int change){this.score += change;}
     public void setHealth(int h){ this.health = h;}
-    public int getLives(){
-        return lives;
-    }
 
 }
