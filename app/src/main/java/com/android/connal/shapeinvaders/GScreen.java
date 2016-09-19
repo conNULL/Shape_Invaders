@@ -218,6 +218,7 @@ public class GScreen extends SurfaceView {
     public void startLevel(int level){
 
         lasers.clear();
+        player.resetShotCount();
         switch(level){
 
             case 1:

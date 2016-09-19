@@ -14,6 +14,7 @@ public class Player extends Entity {
     private int shotsLeft;
     private int power;
     private int score;
+    private int shotMax;
     private int shotWidth;
 
     public Player(Bitmap b, int s, int sideLength){
@@ -21,9 +22,12 @@ public class Player extends Entity {
         health = 100;
         score = 0;
         power = 10;
-        shotsLeft = 2;
+        shotMax = 2;
     }
 
+    public void resetShotCount(){
+        shotsLeft = shotMax;
+    }
     public boolean isDead(){
 
         if(health <= 0)

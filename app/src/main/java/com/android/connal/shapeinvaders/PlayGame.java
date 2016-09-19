@@ -130,6 +130,10 @@ public class PlayGame extends ActionBarActivity{
                 run = true;
                 startGame();
             }
+        } else {
+            started = true;
+            unmark();
+            startGame();
         }
     }
 
@@ -149,11 +153,6 @@ public class PlayGame extends ActionBarActivity{
 
     public void shoot(View view){
 
-        if(!started){
-            started = true;
-            unmark();
-            startGame();
-        }
         g.pShoot();
     }
 
