@@ -32,22 +32,15 @@ public class Player extends Entity {
 
         if(health <= 0)
             return true;
-        else
-            return false;
-
+        return false;
     }
 
     public void hit(Laser z, LinkedList l, Player p){
 
         setHealth(this.health -  z.getPower());
         z.destroy(l, p);
-        if(health <= 0)
-            die();
     }
 
-    public void die(){
-        health = 100;
-    }
 
     public void shoot(LinkedList l, GScreen g){
 

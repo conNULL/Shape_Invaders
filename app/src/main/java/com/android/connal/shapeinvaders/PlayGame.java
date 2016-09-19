@@ -1,5 +1,6 @@
 package com.android.connal.shapeinvaders;
 
+import android.content.Intent;
 import android.graphics.Point;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -97,6 +98,7 @@ public class PlayGame extends ActionBarActivity{
                     move();
                     g.update();
                     g.checkCollisions();
+                    checkForGameOver();
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
@@ -117,6 +119,14 @@ public class PlayGame extends ActionBarActivity{
             }
         }).start();
 
+    }
+
+    public void checkForGameOver(){
+        if(g.getPlayer().isDead()){
+            System.out.print("deeeeeeed");
+            Intent intent = new Intent(this, HighScoresActivity.class);
+            startActivity(intent);
+        }
     }
 
     public void ss(View view){
@@ -143,11 +153,11 @@ public class PlayGame extends ActionBarActivity{
     }
     public void updateHealth(){
 
-        hbar.setText("Health: " + String.valueOf(g.player.getHealth()));
+        hbar.setText("Health: " + String.valueOf(g.getPlayer().getHealth()));
         }
 
     public void updateScore(){
-        sbar.setText("Score: " + String.valueOf(g.player.getScore()) + "  ");
+        sbar.setText("Score: " + String.valueOf(g.getPlayer().getScore()) + "  ");
     }
 
 

@@ -22,7 +22,7 @@ public class GScreen extends SurfaceView {
 
     private Canvas c;
     private SurfaceHolder sh;
-    protected Player player;
+    private Player player;
     LinkedList lasers;
     private LinkedList enemies = new LinkedList();
     private boolean created = false;
@@ -74,6 +74,9 @@ public class GScreen extends SurfaceView {
         });
     }
 
+    public Player getPlayer(){
+        return player;
+    }
     public void moveRight(){
 
         if(player.getX() + player.getSpeed() + player.getWidth() < getWidth())
